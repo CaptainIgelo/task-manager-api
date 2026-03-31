@@ -37,13 +37,15 @@ python manage.py runserver
 ``` 
 
 ## API Endpunkte
-| Method |   Endpunkt         | Beschreibung           |
-| GET    | `/api/tasks/`      | Alle Tasks abrufen     |
-| Post   | `/api/tasks/`      | Neuen Task erstellen   |
-| Get    | `/api/tasks/{id}/` | Einzelnen Task abrufen |
-| PUT    | `/api/tasks/{id}/` | Task komplett updaten  |
-| PATCH  | `/api/tasks/{id}/` | Task teilweise updaten |
-| DELETE | `/api/tasks/{id}/` | Task löschen           |
+
+| Method | Endpunkt | Beschreibung |
+|--------|----------|--------------|
+| GET | `/api/tasks/` | Alle Tasks abrufen |
+| POST | `/api/tasks/` | Neuen Task erstellen |
+| GET | `/api/tasks/{id}/` | Einzelnen Task abrufen |
+| PUT | `/api/tasks/{id}/` | Task komplett updaten |
+| PATCH | `/api/tasks/{id}/` | Task teilweise updaten |
+| DELETE | `/api/tasks/{id}/` | Task löschen |
 
 ## Beispiel 
 ```Json
@@ -56,3 +58,15 @@ python manage.py runserver
     "updated_at": "2026-03-31T13:49:00"
 }
 ```
+
+## Filtering & Suche
+
+Die API unterstützt Filterung, Suche und Sortierung:
+
+| Parameter | Beispiel | Beschreibung |
+|-----------|----------|--------------|
+| `status` | `/api/tasks/?status=todo` | Nach Status filtern |
+| `search` | `/api/tasks/?search=Meeting` | In Titel & Beschreibung suchen |
+| `ordering` | `/api/tasks/?ordering=-created_at` | Ergebnisse sortieren |
+
+**Verfügbare Status-Werte:** `todo` · `in_progress` · `done`
