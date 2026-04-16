@@ -1,13 +1,12 @@
 # task-manager-api
-A RESTful  Tast Manager API built with Django REST Framework 
+A RESTful API for managing tasks. built to practice backend development with **Django REST Framework**. 
 
-Eine RESTful API zur Aufgabenverwaltung, gebaut mit **Django** und **Django REST Framework**.
 
 ## Features 
 
-- Aufgaben erstellen, lesen, updaten und löschen (CRUD) 
-- Status-Tracking (`todo`, `in_progress`, `done`)
-- Automatische Zeitstempel (`create_at`, `updated_at`)
+- Creat, read, update, and delete (CRUD) 
+- Status tracking (`todo`, `in_progress`, `done`)
+- Automatic timestamps (`create_at`, `updated_at`)
 - Browsable API via Django REST Framework 
 
 ## Tech Stack 
@@ -15,39 +14,39 @@ Eine RESTful API zur Aufgabenverwaltung, gebaut mit **Django** und **Django REST
 - **Django 6.0.3**
 - **Django REST Framework** 
 
-## Installation & Setup
+## Getting started
 
 ```bash 
-# Repository klonen 
+# clone repo  
 git clone https://github.com/CaptainIgelo/task-manager-api.git
 cd task-manager-api
 
-# Virtuelles Enviroment erstellen 
+# create virtual enviroment  
 python -m venv venv 
 source venv/bin/activate
 
-# Abhängigkeiten Installieren 
+# install requiremantes  
 pip install -r requirements.txt 
 
-# Datenbank migrieren 
+# migrate DB 
 python manage.py migrate
 
-# Server starten 
+# start server 
 python manage.py runserver
 ``` 
 
-## API Endpunkte
+## API Endpoints
 
-| Method | Endpunkt | Beschreibung |
+| Method | Endpoint | description |
 |--------|----------|--------------|
-| GET | `/api/tasks/` | Alle Tasks abrufen |
-| POST | `/api/tasks/` | Neuen Task erstellen |
-| GET | `/api/tasks/{id}/` | Einzelnen Task abrufen |
-| PUT | `/api/tasks/{id}/` | Task komplett updaten |
-| PATCH | `/api/tasks/{id}/` | Task teilweise updaten |
-| DELETE | `/api/tasks/{id}/` | Task löschen |
+| GET | `/api/tasks/` | List all tasks |
+| POST | `/api/tasks/` | Create a task |
+| GET | `/api/tasks/{id}/` | Get a task |
+| PUT | `/api/tasks/{id}/` | Replace a task |
+| PATCH | `/api/tasks/{id}/` | Update a task  |
+| DELETE | `/api/tasks/{id}/` | Delete a task |
 
-## Beispiel 
+## Example response  
 ```Json
 {
     "id": 1,
@@ -59,14 +58,14 @@ python manage.py runserver
 }
 ```
 
-## Filtering & Suche
+## Filtering
 
-Die API unterstützt Filterung, Suche und Sortierung:
+The API supports filtering, searching, and sorting:
 
-| Parameter | Beispiel | Beschreibung |
+| Parameter | Example | Description |
 |-----------|----------|--------------|
-| `status` | `/api/tasks/?status=todo` | Nach Status filtern |
-| `search` | `/api/tasks/?search=Meeting` | In Titel & Beschreibung suchen |
-| `ordering` | `/api/tasks/?ordering=-created_at` | Ergebnisse sortieren |
+| `status` | `/api/tasks/?status=todo` | Filter by Status |
+| `search` | `/api/tasks/?search=Meeting` | Search title & description |
+| `ordering` | `/api/tasks/?ordering=-created_at` | Sort results |
 
-**Verfügbare Status-Werte:** `todo` · `in_progress` · `done`
+**Status values:** `todo` · `in_progress` · `done`
