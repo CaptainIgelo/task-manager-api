@@ -32,7 +32,7 @@ class TaskAPITests(APITestCase):
 
 
     def test_get_single_task(self): 
-        task = Task.objects.create(title='Test Task', status='todo')
+        task = Task.objects.create(title='Test Task', status='todo', owner=self.user)
 
         response = self.client.get(f'/api/tasks/{task.id}/')
 
@@ -42,7 +42,7 @@ class TaskAPITests(APITestCase):
 
     def test_patch_task(self):
 
-        task = Task.objects.create(title='Test Task', status='todo')
+        task = Task.objects.create(title='Test Task', status='todo', owner=self.user)
 
         response = self.client.patch(
             f'/api/tasks/{task.id}/',
@@ -55,7 +55,7 @@ class TaskAPITests(APITestCase):
         self.assertEqual(task.status, 'done')
 
     def test_delete_task(self):
-        task = Task.objects.create(title='Test Task', status='todo')
+        task = Task.objects.create(title='Test Task', status='todo', owner=self.user)
 
         response = self.client.delete(f'/api/tasks/{task.id}/')
 
