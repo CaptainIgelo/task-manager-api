@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken", 
     "django_filters", 
     "tasks", 
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware", 
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -138,3 +140,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10, 
 }   
+
+CORS_ALLOWED_ORIGINS = [
+    "https://curly-space-broccoli-45gpp4wjw572qq7-8000.app.github.dev"
+]
