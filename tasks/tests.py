@@ -61,3 +61,29 @@ class TaskAPITests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Task.objects.count(), 0)
+
+    
+    def test_unauthenticated_access(self):
+        self.client.credentials()
+        response = self.client.get('/api/tasks/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_user_cannot_see_other_users_tasks(self): 
+        other_user = User.objects.create_user(
+            username = 'otheruser',
+            password = 'otherpass123'
+        )
+        Task.objects.create(title = 'Fremder Task', status = 'todo', owner = other_user)
+
+        response = self.client.get('/api/tasks/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['results']), 0)
+
+
+    def test_invalid_status_rejected(self): 
+        data = {
+            'title': 'Test Task', 
+            'status': 'ungültig'
+        }
+        response = self.client.post('/api/tasks/', data, format = 'json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
