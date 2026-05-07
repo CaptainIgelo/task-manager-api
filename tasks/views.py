@@ -2,6 +2,9 @@ from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Task
 from .serializers import TaskSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -16,3 +19,9 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def ping(request):
+    return Response({"message": "pong"})

@@ -39,3 +39,9 @@ async function login() {
 }
 
 loginButton.addEventListener("click", login); 
+
+
+fetch('https://curly-space-broccoli-45gpp4wjw572qq7-8000.app.github.dev/api/ping/')
+    .then(response => response.json())
+    .then(data => console.log('PING RESPONSE:', data))
+    .catch(err => console.error('PING ERROR:', err))
